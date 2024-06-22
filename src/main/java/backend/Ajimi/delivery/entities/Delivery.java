@@ -32,9 +32,9 @@ public class Delivery {
   @Column(name = "actual_date")
   private String actualDate;
 
-//  @ManyToMany(mappedBy = "delivery")
-//  private List<Order> order;
-//
+  @ManyToMany(mappedBy = "delivery")
+  private List<Order> order;
+
   @OneToMany(mappedBy = "delivery")
   private List<Transaction> transaction;
 

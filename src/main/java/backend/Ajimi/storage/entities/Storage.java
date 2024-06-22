@@ -30,12 +30,16 @@ public class Storage {
   @Column(name = "type")
   private StorageType type;
 
-//  @OneToMany(mappedBy = "storage")
-//  private List<Location> locations;
+  @OneToMany(mappedBy = "storage")
+  private List<Location> locations;
 
   @OneToMany(mappedBy = "storage")
   private List<Transaction> transactions;
-//
-//  @ManyToMany(mappedBy = "storage")
-//  private List<Product> products;
+
+  @ManyToMany(fetch = FetchType.LAZY)
+  @JoinTable(
+      name = "app_product_storage",
+      joinColumns = @JoinColumn(name = "storage_id"),
+      inverseJoinColumns = @JoinColumn(name = "product_id"))
+  private List<Product> products;
 }

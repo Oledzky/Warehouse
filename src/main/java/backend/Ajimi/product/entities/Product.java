@@ -36,24 +36,29 @@ public class Product {
   @Column(name = "available_quantity")
   private int availableQuantity;
 
-//  @ManyToOne
-//  @JoinColumn(name = "manufacturer_id")
-//  private Manufacturer manufacturer;
-//
+  @ManyToOne
+  @JoinColumn(name = "manufacturer_id")
+  private Manufacturer manufacturer;
+
   @ManyToOne
   @JoinColumn(name = "transaction_id")
   private Transaction transaction;
 
-//  @ManyToMany(mappedBy = "products")
-//  private List<Storage> storages;
-//
-//  @ManyToMany(mappedBy = "products")
-//  private List<Supplier> suppliers;
-//
-//  @ManyToMany(mappedBy = "products")
-//  private List<Order> orders;
-//
-//  @ManyToOne
-//  @JoinColumn(name = "category_id")
-//  private Category category;
+  @ManyToMany(mappedBy = "products")
+  private List<Storage> storages;
+
+  @ManyToMany(mappedBy = "products")
+  private List<Supplier> suppliers;
+
+  @ManyToMany(fetch = FetchType.LAZY)
+  @JoinTable(
+      name = "app_product_order",
+      joinColumns = @JoinColumn(name = "product_id"),
+      inverseJoinColumns = @JoinColumn(name = "order_id")
+  )
+  private List<Order> orders;
+
+  @ManyToOne
+  @JoinColumn(name = "category_id")
+  private Category category;
 }

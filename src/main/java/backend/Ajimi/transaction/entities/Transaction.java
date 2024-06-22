@@ -34,7 +34,7 @@ public class Transaction {
   @JoinColumn(name = "storage_id")
   private Storage storage;
 
-//  @ManyToOne
-//  @JoinColumn(name = "user_id")
-//  private User user;
+  @ManyToOne
+  @JoinColumn(name = "user_id")
+  private User user;
 }

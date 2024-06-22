@@ -41,9 +41,17 @@ public class Order {
   @Column(name = "deleted_at")
   private String deletedAt;
 
-//  @ManyToMany(mappedBy = "order")
-//  private List<Product> product;
-//
-//  @ManyToMany(mappedBy = "order")
-//  private List<Delivery> delivery;
+  @ManyToMany(fetch = FetchType.LAZY)
+  @JoinTable(
+      name = "app_order_product",
+      joinColumns = @JoinColumn(name = "product_id"),
+      inverseJoinColumns = @JoinColumn(name = "order_id"))
+  private List<Product> product;
+
+  @ManyToMany(fetch = FetchType.LAZY)
+  @JoinTable(
+      name = "app_order_product",
+      joinColumns = @JoinColumn(name = "delivery_id"),
+      inverseJoinColumns = @JoinColumn(name = "product_id"))
+  private List<Delivery> delivery;
 }

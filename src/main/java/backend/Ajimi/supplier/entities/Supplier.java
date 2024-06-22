@@ -28,9 +28,17 @@ public class Supplier {
   @Column(name = "phone")
   private String phone;
 
-//  @ManyToMany(mappedBy = "suppliers")
-//  private List<Location> locations;
-//
-//  @ManyToMany(mappedBy = "suppliers")
-//  private List<Product> products;
+  @ManyToMany(fetch = FetchType.LAZY)
+  @JoinTable(
+      name = "app_supplier_location",
+      joinColumns = @JoinColumn(name = "supplier_id"),
+      inverseJoinColumns = @JoinColumn(name = "location_id"))
+  private List<Location> locations;
+
+  @ManyToMany(fetch = FetchType.LAZY)
+  @JoinTable(
+      name = "app_supplier_product",
+      joinColumns = @JoinColumn(name = "supplier_id"),
+      inverseJoinColumns = @JoinColumn(name = "product_id"))
+  private List<Product> products;
 }

@@ -23,14 +23,18 @@ public class Location {
   @Column(name = "address")
   private String address;
 
-//  @ManyToMany(mappedBy = "location")
-//  private List<Supplier> supplier;
-//
-//  @ManyToMany(mappedBy = "location")
-//  private List<Manufacturer> manufacturer;
+  @ManyToMany(fetch = FetchType.LAZY)
+  @JoinTable(
+      name = "app_supplier_location",
+      joinColumns = @JoinColumn(name = "location_id"),
+      inverseJoinColumns = @JoinColumn(name = "supplier_id"))
+  private List<Supplier> supplier;
 
-//  @ManyToOne
-//  @JoinColumn(name = "storage_id")
-//  private Storage storage;
+  @ManyToMany(mappedBy = "location")
+  private List<Manufacturer> manufacturer;
+
+  @ManyToOne
+  @JoinColumn(name = "storage_id")
+  private Storage storage;
 
 }
