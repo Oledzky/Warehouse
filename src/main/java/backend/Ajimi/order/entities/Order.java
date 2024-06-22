@@ -1,10 +1,13 @@
 package backend.Ajimi.order.entities;
 
+import backend.Ajimi.delivery.entities.Delivery;
+import backend.Ajimi.enums.Status;
+import backend.Ajimi.product.entities.Product;
 import jakarta.persistence.*;
+import java.util.List;
+import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-
-import java.util.UUID;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -12,13 +15,13 @@ import java.util.UUID;
 @Table(name = "app_order")
 public class Order {
 
-@Column(unique = true, name = "id")
+  @Column(unique = true, name = "id")
   @GeneratedValue
   @Id
   private UUID id;
 
   @Column(name = "status")
-  private String status;
+  private Status status;
 
   @Column(name = "total")
   private double total;
@@ -38,4 +41,9 @@ public class Order {
   @Column(name = "deleted_at")
   private String deletedAt;
 
+//  @ManyToMany(mappedBy = "order")
+//  private List<Product> product;
+//
+//  @ManyToMany(mappedBy = "order")
+//  private List<Delivery> delivery;
 }

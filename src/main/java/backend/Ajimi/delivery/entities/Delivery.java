@@ -1,9 +1,12 @@
 package backend.Ajimi.delivery.entities;
 
+import backend.Ajimi.order.entities.Order;
+import backend.Ajimi.transaction.entities.Transaction;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -28,6 +31,13 @@ public class Delivery {
 
   @Column(name = "actual_date")
   private String actualDate;
+
+//  @ManyToMany(mappedBy = "delivery")
+//  private List<Order> order;
+//
+  @OneToMany(mappedBy = "delivery")
+  private List<Transaction> transaction;
+
 
 
 }

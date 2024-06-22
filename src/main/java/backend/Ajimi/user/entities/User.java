@@ -1,5 +1,6 @@
 package backend.Ajimi.user.entities;
 
+import backend.Ajimi.transaction.entities.Transaction;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.context.annotation.DependsOn;
 
+import java.util.List;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -36,5 +38,11 @@ public class User {
 
   @Column(name = "password")
   private String password;
+
+//  @OneToMany
+//  private List<Transaction> transactions;
+
+
+
 
 }
