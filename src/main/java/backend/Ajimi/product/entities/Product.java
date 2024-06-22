@@ -3,9 +3,12 @@ package backend.Ajimi.product.entities;
 import backend.Ajimi.category.entity.Category;
 import backend.Ajimi.manufacturer.entities.Manufacturer;
 import backend.Ajimi.order.entities.Order;
+import backend.Ajimi.order_entry.entity.OrderEntry;
 import backend.Ajimi.storage.entities.Storage;
+import backend.Ajimi.storage_entry.entity.StorageEntry;
 import backend.Ajimi.supplier.entities.Supplier;
 import backend.Ajimi.transaction.entities.Transaction;
+import backend.Ajimi.transaction_entry.entity.TransactionEntry;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -40,25 +43,21 @@ public class Product {
   @JoinColumn(name = "manufacturer_id")
   private Manufacturer manufacturer;
 
-  @ManyToOne
-  @JoinColumn(name = "transaction_id")
-  private Transaction transaction;
+  @OneToMany(mappedBy = "product")
+  private List<TransactionEntry> transactionEntries;
 
-  @ManyToMany(mappedBy = "products")
-  private List<Storage> storages;
+  @OneToMany(mappedBy = "product")
+  private List<StorageEntry> storageEntries;
 
   @ManyToMany(mappedBy = "products")
   private List<Supplier> suppliers;
 
-  @ManyToMany(fetch = FetchType.LAZY)
-  @JoinTable(
-      name = "app_product_order",
-      joinColumns = @JoinColumn(name = "product_id"),
-      inverseJoinColumns = @JoinColumn(name = "order_id")
-  )
-  private List<Order> orders;
+  @OneToMany(mappedBy = "product")
+  private List<OrderEntry> orderEntries;
 
   @ManyToOne
   @JoinColumn(name = "category_id")
   private Category category;
+
+
 }

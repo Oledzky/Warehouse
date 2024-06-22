@@ -3,6 +3,7 @@ package backend.Ajimi.transaction.entities;
 import backend.Ajimi.delivery.entities.Delivery;
 import backend.Ajimi.product.entities.Product;
 import backend.Ajimi.storage.entities.Storage;
+import backend.Ajimi.transaction_entry.entity.TransactionEntry;
 import backend.Ajimi.user.entities.User;
 import jakarta.persistence.*;
 import java.util.List;
@@ -28,7 +29,7 @@ public class Transaction {
   private Delivery delivery;
 
   @OneToMany(mappedBy = "transaction")
-  private List<Product> products;
+  private List<TransactionEntry> transactionEntries;
 
   @ManyToOne
   @JoinColumn(name = "storage_id")

@@ -3,6 +3,7 @@ package backend.Ajimi.storage.entities;
 import backend.Ajimi.enums.StorageType;
 import backend.Ajimi.location.entities.Location;
 import backend.Ajimi.product.entities.Product;
+import backend.Ajimi.storage_entry.entity.StorageEntry;
 import backend.Ajimi.transaction.entities.Transaction;
 import jakarta.persistence.*;
 import java.util.List;
@@ -36,10 +37,6 @@ public class Storage {
   @OneToMany(mappedBy = "storage")
   private List<Transaction> transactions;
 
-  @ManyToMany(fetch = FetchType.LAZY)
-  @JoinTable(
-      name = "app_product_storage",
-      joinColumns = @JoinColumn(name = "storage_id"),
-      inverseJoinColumns = @JoinColumn(name = "product_id"))
-  private List<Product> products;
+@OneToMany(mappedBy = "storage")
+  private List<StorageEntry> storageEntries;
 }

@@ -2,6 +2,7 @@ package backend.Ajimi.order.entities;
 
 import backend.Ajimi.delivery.entities.Delivery;
 import backend.Ajimi.enums.Status;
+import backend.Ajimi.order_entry.entity.OrderEntry;
 import backend.Ajimi.product.entities.Product;
 import jakarta.persistence.*;
 import java.util.List;
@@ -41,12 +42,8 @@ public class Order {
   @Column(name = "deleted_at")
   private String deletedAt;
 
-  @ManyToMany(fetch = FetchType.LAZY)
-  @JoinTable(
-      name = "app_order_product",
-      joinColumns = @JoinColumn(name = "product_id"),
-      inverseJoinColumns = @JoinColumn(name = "order_id"))
-  private List<Product> product;
+  @OneToMany(mappedBy = "order")
+  private List<OrderEntry> orderEntries;
 
   @ManyToMany(fetch = FetchType.LAZY)
   @JoinTable(
