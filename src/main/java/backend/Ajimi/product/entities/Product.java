@@ -1,13 +1,11 @@
 package backend.Ajimi.product.entities;
 
 import backend.Ajimi.category.entity.Category;
+import backend.Ajimi.enums.StorageType;
 import backend.Ajimi.manufacturer.entities.Manufacturer;
-import backend.Ajimi.order.entities.Order;
 import backend.Ajimi.order_entry.entity.OrderEntry;
-import backend.Ajimi.storage.entities.Storage;
 import backend.Ajimi.storage_entry.entity.StorageEntry;
 import backend.Ajimi.supplier.entities.Supplier;
-import backend.Ajimi.transaction.entities.Transaction;
 import backend.Ajimi.transaction_entry.entity.TransactionEntry;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -33,11 +31,14 @@ public class Product {
   @Column(name = "description")
   private String description;
 
+  @Column(name = "measurement_unit")
+  private String measurementUnit;
+
+  @Column(name = "storage_type")
+  private StorageType storageType;
+
   @Column(name = "price")
   private int price;
-
-  @Column(name = "available_quantity")
-  private int availableQuantity;
 
   @ManyToOne
   @JoinColumn(name = "manufacturer_id")
