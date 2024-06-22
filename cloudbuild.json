@@ -1,0 +1,40 @@
+{
+  "steps": [
+    {
+      "name": "gcr.io/kaniko-project/executor:latest",
+      "id": "Optimized kaniko build",
+      "args": [
+        "--destination=$_AR_HOSTNAME/$PROJECT_ID/cloud-run-source-deploy/$REPO_NAME/$_SERVICE_NAME",
+        "--cache=true",
+        "--cache-ttl=96h"
+      ]
+    },
+    {
+      "name": "gcr.io/google.com/cloudsdktool/cloud-sdk:slim",
+      "id": "Deploy to cloud run",
+      "entrypoint": "gcloud",
+      "args": [
+        "run",
+        "services",
+        "update",
+        "$_SERVICE_NAME",
+        "--platform=managed",
+        "--image=$_AR_HOSTNAME/$PROJECT_ID/cloud-run-source-deploy/$REPO_NAME/$_SERVICE_NAME",
+        "--labels=managed-by=gcp-cloud-build-deploy-cloud-run,commit-sha=$COMMIT_SHA,gcb-build-id=$BUILD_ID,gcb-trigger-id=$_TRIGGER_ID",
+        "--region=$_DEPLOY_REGION",
+        "--quiet"
+      ]
+    }
+  ],
+  "options": {
+    "substitutionOption": "ALLOW_LOOSE",
+    "logging": "CLOUD_LOGGING_ONLY"
+  },
+  "tags": [
+    "gcp-cloud-build-deploy-cloud-run",
+    "gcp-cloud-build-deploy-cloud-run-managed",
+    "springboot",
+    "inzynierka",
+    "backend"
+  ]
+}
