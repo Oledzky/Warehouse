@@ -11,10 +11,8 @@ import java.util.List;
 import java.util.UUID;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, UUID> {
+public interface UserRepository extends JpaRepository<User, String> {
 
-    User findByUsernameAndPassword(String username, String password);
-
-    @Query("SELECT u FROM User u WHERE u.surname = :surname ORDER BY u.surname")
-    List<User> findBySurname(@Param("surname") String surname);
+  @Query("SELECT u FROM User u WHERE u.username = :username")
+  List<User> findByUsername(String username);
 }

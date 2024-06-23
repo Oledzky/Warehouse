@@ -2,14 +2,12 @@ package backend.Ajimi.user.entities;
 
 import backend.Ajimi.transaction.entities.Transaction;
 import jakarta.persistence.*;
+import java.util.List;
+import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.context.annotation.DependsOn;
-
-import java.util.List;
-import java.util.UUID;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -41,8 +39,4 @@ public class User {
 
   @OneToMany
   private List<Transaction> transactions;
-
-
-
-
 }

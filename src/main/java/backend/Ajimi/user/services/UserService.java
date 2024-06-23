@@ -3,13 +3,12 @@ package backend.Ajimi.user.services;
 import backend.Ajimi.user.entities.User;
 import backend.Ajimi.user.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
-@Lazy
 @Service
 public class UserService {
 
@@ -21,24 +20,22 @@ public class UserService {
     }
 
     public User saveUser(User user) {
-        try {
-            return userRepository.save(user);
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw e;
-        }
+        return userRepository.save(user);
     }
 
-    public List<User> getAllUsers() {
+    public List<User> findAllUsers() {
         return userRepository.findAll();
     }
 
-    public User getUserById(UUID id) {
-        return userRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+    public Optional<User> findUserById(UUID id) {
+        return userRepository.findById(id.toString());
     }
 
-    public List<User> getUserBySurname(String surname){
-        return userRepository.findBySurname(surname);
+    public List<User> findUsersByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
+
+    public void deleteUser(UUID id) {
+        userRepository.deleteById(id.toString());
     }
 }

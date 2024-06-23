@@ -1,2 +1,20 @@
 package backend.Ajimi.storage.repositories;
-public interface StorageRepository {}
+
+import backend.Ajimi.enums.StorageType;
+import backend.Ajimi.storage.entities.Storage;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+import java.util.UUID;
+
+@Repository
+public interface StorageRepository extends JpaRepository<Storage, UUID> {
+
+  @Query ("SELECT s FROM Storage s WHERE s.type = ?1")
+  List<Storage> findAllByType(StorageType type);
+
+  @Query ("SELECT s FROM Storage s WHERE s.id = ?1")
+  List<Storage> findAllById(UUID id);
+}

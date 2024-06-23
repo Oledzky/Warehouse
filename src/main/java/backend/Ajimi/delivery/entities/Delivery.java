@@ -26,11 +26,8 @@ public class Delivery {
   @Column(name = "status")
   private String status;
 
-  @Column(name = "estimated_date")
-  private String estimatedDate;
-
-  @Column(name = "actual_date")
-  private String actualDate;
+  @Column(name = "date")
+  private String deliveryDate;
 
   @ManyToMany(mappedBy = "delivery")
   private List<Order> order;
