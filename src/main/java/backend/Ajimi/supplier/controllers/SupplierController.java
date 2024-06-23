@@ -1,6 +1,7 @@
 package backend.Ajimi.supplier.controllers;
 
 import backend.Ajimi.supplier.entities.Supplier;
+import backend.Ajimi.supplier.entities.SupplierDTO;
 import backend.Ajimi.supplier.services.SupplierService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -27,8 +28,8 @@ public class SupplierController {
   }
 
   @GetMapping
-  public ResponseEntity<List<Supplier>> getAllSuppliers() {
-    List<Supplier> suppliers = supplierService.findAllSuppliers();
+  public ResponseEntity<List<SupplierDTO>> getAllSuppliers() {
+    List<SupplierDTO> suppliers = supplierService.findAllSuppliers();
     return ResponseEntity.ok(suppliers);
   }
 

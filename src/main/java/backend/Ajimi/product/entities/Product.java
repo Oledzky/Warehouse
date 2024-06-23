@@ -8,14 +8,16 @@ import backend.Ajimi.storage_entry.entity.StorageEntry;
 import backend.Ajimi.supplier.entities.Supplier;
 import backend.Ajimi.transaction_entry.entity.TransactionEntry;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 import java.util.UUID;
 
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
+@Getter
+@Setter
 @Entity
 @Table(name = "app_product")
 public class Product {

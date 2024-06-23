@@ -1,6 +1,7 @@
 package backend.Ajimi.storage_entry.controllers;
 
 import backend.Ajimi.storage_entry.entity.StorageEntry;
+import backend.Ajimi.storage_entry.entity.StorageEntryDTO;
 import backend.Ajimi.storage_entry.services.StorageEntryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -27,8 +28,8 @@ public class StorageEntryController {
   }
 
   @GetMapping
-  public ResponseEntity<List<StorageEntry>> getAllStorageEntries() {
-    List<StorageEntry> storageEntries = storageEntryService.findAllStorageEntries();
+  public ResponseEntity<List<StorageEntryDTO>> getAllStorageEntries() {
+    List<StorageEntryDTO> storageEntries = storageEntryService.findAllStorageEntries();
     return ResponseEntity.ok(storageEntries);
   }
 

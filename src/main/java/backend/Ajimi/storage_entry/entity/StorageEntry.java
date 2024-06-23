@@ -3,14 +3,16 @@ package backend.Ajimi.storage_entry.entity;
 import backend.Ajimi.product.entities.Product;
 import backend.Ajimi.storage.entities.Storage;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.UUID;
 
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Entity
+@Getter
+@Setter
 @Table(name = "app_storage_entry")
 public class StorageEntry {
 

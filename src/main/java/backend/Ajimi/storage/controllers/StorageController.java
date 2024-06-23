@@ -2,6 +2,7 @@ package backend.Ajimi.storage.controllers;
 
 import backend.Ajimi.enums.StorageType;
 import backend.Ajimi.storage.entities.Storage;
+import backend.Ajimi.storage.entities.StorageDTO;
 import backend.Ajimi.storage.services.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,8 +29,8 @@ public class StorageController {
   }
 
   @GetMapping
-  public ResponseEntity<List<Storage>> getAllStorages() {
-    List<Storage> storages = storageService.findAllStorages();
+  public ResponseEntity<List<StorageDTO>> getAllStorages() {
+    List<StorageDTO> storages = storageService.findAllStorages();
     return ResponseEntity.ok(storages);
   }
 

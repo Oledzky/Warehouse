@@ -3,15 +3,17 @@ package backend.Ajimi.manufacturer.entities;
 import backend.Ajimi.location.entities.Location;
 import backend.Ajimi.product.entities.Product;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 import java.util.UUID;
 
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Entity
+@Getter
+@Setter
 @Table(name = "app_manufacturer")
 public class Manufacturer {
 

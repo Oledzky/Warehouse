@@ -4,7 +4,9 @@ import backend.Ajimi.order.entities.Order;
 import backend.Ajimi.transaction.entities.Transaction;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 import java.util.UUID;
@@ -12,6 +14,8 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Getter
+@Setter
 @Table(name = "app_delivery")
 public class Delivery {
 
@@ -34,7 +38,5 @@ public class Delivery {
 
   @OneToMany(mappedBy = "delivery")
   private List<Transaction> transaction;
-
-
 
 }

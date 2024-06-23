@@ -1,6 +1,7 @@
 package backend.Ajimi.location.controllers;
 
 import backend.Ajimi.location.entities.Location;
+import backend.Ajimi.location.entities.LocationDTO;
 import backend.Ajimi.location.services.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -27,9 +28,9 @@ public class LocationController {
   }
 
   @GetMapping
-  public ResponseEntity<List<Location>> getAllLocations() {
-    List<Location> locations = locationService.findAllLocations();
-    return ResponseEntity.ok(locations);
+  public List<LocationDTO>getAllLocations() {
+    List<LocationDTO> locations = locationService.findAllLocations();
+    return locations;
   }
 
   @GetMapping("/{id}")

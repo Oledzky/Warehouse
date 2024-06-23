@@ -8,12 +8,15 @@ import backend.Ajimi.transaction.entities.Transaction;
 import jakarta.persistence.*;
 import java.util.List;
 import java.util.UUID;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+
+import lombok.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Entity
+@Getter
+@Setter
 @Table(name = "app_storage")
 public class Storage {
 

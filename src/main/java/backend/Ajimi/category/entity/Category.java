@@ -1,17 +1,18 @@
 package backend.Ajimi.category.entity;
 
-
 import backend.Ajimi.product.entities.Product;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 import java.util.UUID;
 
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Entity
+@Getter
+@Setter
 @Table(name = "app_category")
 public class Category {
 
@@ -28,4 +29,5 @@ public class Category {
 
   @OneToMany(mappedBy = "category")
   private List<Product> products;
+
 }

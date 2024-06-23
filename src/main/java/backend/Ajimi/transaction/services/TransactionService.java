@@ -1,7 +1,9 @@
 package backend.Ajimi.transaction.services;
 
 import backend.Ajimi.transaction.entities.Transaction;
+import backend.Ajimi.transaction.entities.TransactionDTO;
 import backend.Ajimi.transaction.repositories.TransactionRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +14,7 @@ import java.util.UUID;
 @Service
 public class TransactionService {
 
+  private final ModelMapper modelMapper = new ModelMapper();
   private final TransactionRepository transactionRepository;
 
   @Autowired
@@ -23,8 +26,11 @@ public class TransactionService {
     return transactionRepository.save(transaction);
   }
 
-  public List<Transaction> findAllTransactions() {
-    return transactionRepository.findAll();
+  public List<TransactionDTO> findAllTransactions() {
+    List<Transaction> transactions = transactionRepository.findAll();
+    return transactions.stream()
+            .map(transaction -> modelMapper.map(transaction, TransactionDTO.class))
+            .toList();
   }
 
   public Optional<Transaction> findTransactionById(UUID id) {

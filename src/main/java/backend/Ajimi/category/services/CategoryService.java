@@ -1,7 +1,9 @@
 package backend.Ajimi.category.services;
 
 import backend.Ajimi.category.entity.Category;
+import backend.Ajimi.category.entity.CategoryDTO;
 import backend.Ajimi.category.repositories.CategoryRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +13,7 @@ import java.util.UUID;
 @Service
 public class CategoryService {
 
+  private final ModelMapper modelMapper = new ModelMapper();
   private final CategoryRepository categoryRepository;
 
   @Autowired
@@ -22,8 +25,11 @@ public class CategoryService {
     return categoryRepository.save(category);
   }
 
-  public List<Category> findAllCategories() {
-    return categoryRepository.findAll();
+  public List<CategoryDTO> findAllCategories() {
+    List<CategoryDTO> categories = categoryRepository.findAll().stream()
+            .map(category -> modelMapper.map(category, CategoryDTO.class))
+            .toList();
+    return categories;
   }
 
   public Category findCategoryById(UUID id) {

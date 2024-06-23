@@ -1,6 +1,7 @@
 package backend.Ajimi.manufacturer.controllers;
 
 import backend.Ajimi.manufacturer.entities.Manufacturer;
+import backend.Ajimi.manufacturer.entities.ManufacturerDTO;
 import backend.Ajimi.manufacturer.services.ManufacturerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -27,8 +28,8 @@ public class ManufacturerController {
   }
 
   @GetMapping
-  public ResponseEntity<List<Manufacturer>> getAllManufacturers() {
-    List<Manufacturer> manufacturers = manufacturerService.findAllManufacturers();
+  public ResponseEntity<List<ManufacturerDTO>> getAllManufacturers() {
+    List<ManufacturerDTO> manufacturers = manufacturerService.findAllManufacturers();
     return ResponseEntity.ok(manufacturers);
   }
 

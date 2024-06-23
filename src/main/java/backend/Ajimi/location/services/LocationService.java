@@ -1,7 +1,9 @@
 package backend.Ajimi.location.services;
 
 import backend.Ajimi.location.entities.Location;
+import backend.Ajimi.location.entities.LocationDTO;
 import backend.Ajimi.location.repositories.LocationRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +14,7 @@ import java.util.UUID;
 @Service
 public class LocationService {
 
+  private final ModelMapper modelMapper = new ModelMapper();
   private final LocationRepository locationRepository;
 
   @Autowired
@@ -23,8 +26,11 @@ public class LocationService {
     return locationRepository.save(location);
   }
 
-  public List<Location> findAllLocations() {
-    return locationRepository.findAll();
+  public List<LocationDTO> findAllLocations() {
+    List<LocationDTO> locations = locationRepository.findAll().stream()
+            .map(location -> modelMapper.map(location, LocationDTO.class))
+            .toList();
+    return locations;
   }
 
   public Optional<Location> findLocationById(UUID id) {

@@ -1,6 +1,7 @@
 package backend.Ajimi.order.controllers;
 
 import backend.Ajimi.order.entities.Order;
+import backend.Ajimi.order.entities.OrderDTO;
 import backend.Ajimi.order.services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -27,8 +28,8 @@ public class OrderController {
   }
 
   @GetMapping
-  public ResponseEntity<List<Order>> getAllOrders() {
-    List<Order> orders = orderService.findAllOrders();
+  public ResponseEntity<List<OrderDTO>> getAllOrders() {
+    List<OrderDTO> orders = orderService.findAllOrders();
     return ResponseEntity.ok(orders);
   }
 

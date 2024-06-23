@@ -1,6 +1,7 @@
 package backend.Ajimi.category.controllers;
 
 import backend.Ajimi.category.entity.Category;
+import backend.Ajimi.category.entity.CategoryDTO;
 import backend.Ajimi.category.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -27,8 +28,8 @@ public class CategoryController {
   }
 
   @GetMapping
-  public ResponseEntity<List<Category>> getAllCategories() {
-    List<Category> categories = categoryService.findAllCategories();
+  public ResponseEntity<List<CategoryDTO>> getAllCategories() {
+    List<CategoryDTO> categories = categoryService.findAllCategories();
     return ResponseEntity.ok(categories);
   }
 

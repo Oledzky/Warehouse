@@ -1,16 +1,18 @@
 package backend.Ajimi.user.controllers;
 
-import backend.Ajimi.user.entities.User;
-import backend.Ajimi.user.services.UserService;
+import backend.Ajimi.user.entities.UserDTO;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import backend.Ajimi.user.entities.User;
+import backend.Ajimi.user.services.UserService;
+
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/users")
+@CrossOrigin
 public class UserController {
 
   private final UserService userService;
@@ -20,34 +22,20 @@ public class UserController {
     this.userService = userService;
   }
 
-  @PostMapping
-  public ResponseEntity<User> createUser(@RequestBody User user) {
-    User savedUser = userService.saveUser(user);
-    return ResponseEntity.ok(savedUser);
+  @Tag(name = "post", description = "POST method for creating user")
+  @PostMapping("/add")
+  public User addUser(@RequestBody User user) {
+    return userService.saveUser(user);
   }
 
-  @GetMapping
-  public ResponseEntity<List<User>> getAllUsers() {
-    List<User> users = userService.findAllUsers();
-    return ResponseEntity.ok(users);
+  @Tag(name = "get", description = "GET method returning list of users")
+  @GetMapping("/all")
+  public List<UserDTO> getAllUsers() {
+    List<UserDTO> users = userService.getAllUsers();
+    return userService.getAllUsers();
   }
 
-  @GetMapping("/{id}")
-  public ResponseEntity<User> getUserById(@PathVariable UUID id) {
-    return userService.findUserById(id)
-            .map(ResponseEntity::ok)
-            .orElseGet(() -> ResponseEntity.notFound().build());
   }
 
-  @GetMapping("/search")
-  public ResponseEntity<List<User>> getUsersByUsername(@RequestParam String username) {
-    List<User> users = userService.findUsersByUsername(username);
-    return ResponseEntity.ok(users);
-  }
+  // Additional controller methods related to user operations can be added here
 
-  @DeleteMapping("/{id}")
-  public ResponseEntity<Void> deleteUser(@PathVariable UUID id) {
-    userService.deleteUser(id);
-    return ResponseEntity.ok().build();
-  }
-}

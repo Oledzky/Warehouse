@@ -3,14 +3,16 @@ package backend.Ajimi.order_entry.entity;
 import backend.Ajimi.order.entities.Order;
 import backend.Ajimi.product.entities.Product;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.UUID;
 
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Entity
+@Getter
+@Setter
 @Table(name = "app_order_entry")
 public class OrderEntry {
 

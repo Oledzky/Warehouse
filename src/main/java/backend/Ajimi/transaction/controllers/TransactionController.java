@@ -1,6 +1,7 @@
 package backend.Ajimi.transaction.controllers;
 
 import backend.Ajimi.transaction.entities.Transaction;
+import backend.Ajimi.transaction.entities.TransactionDTO;
 import backend.Ajimi.transaction.services.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -27,8 +28,8 @@ public class TransactionController {
   }
 
   @GetMapping
-  public ResponseEntity<List<Transaction>> getAllTransactions() {
-    List<Transaction> transactions = transactionService.findAllTransactions();
+  public ResponseEntity<List<TransactionDTO>> getAllTransactions() {
+    List<TransactionDTO> transactions = transactionService.findAllTransactions();
     return ResponseEntity.ok(transactions);
   }
 

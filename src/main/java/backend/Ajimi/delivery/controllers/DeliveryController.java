@@ -1,6 +1,7 @@
 package backend.Ajimi.delivery.controllers;
 
 import backend.Ajimi.delivery.entities.Delivery;
+import backend.Ajimi.delivery.entities.DeliveryDTO;
 import backend.Ajimi.delivery.services.DeliveryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -27,8 +28,8 @@ public class DeliveryController {
   }
 
   @GetMapping
-  public ResponseEntity<List<Delivery>> getAllDeliveries() {
-    List<Delivery> deliveries = deliveryService.findAllDeliveries();
+  public ResponseEntity<List<DeliveryDTO>> getAllDeliveries() {
+    List<DeliveryDTO> deliveries = deliveryService.findAllDeliveries();
     return ResponseEntity.ok(deliveries);
   }
 

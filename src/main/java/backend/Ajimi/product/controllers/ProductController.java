@@ -1,6 +1,7 @@
 package backend.Ajimi.product.controllers;
 
 import backend.Ajimi.product.entities.Product;
+import backend.Ajimi.product.entities.ProductDTO;
 import backend.Ajimi.product.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -27,9 +28,9 @@ public class ProductController {
   }
 
   @GetMapping
-  public ResponseEntity<List<Product>> getAllProducts() {
-    List<Product> products = productService.findAllProducts();
-    return ResponseEntity.ok(products);
+  public List<ProductDTO> getAllProducts() {
+    List<ProductDTO> products = productService.findAllProducts();
+    return products;
   }
 
   @GetMapping("/{id}")

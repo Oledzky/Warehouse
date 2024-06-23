@@ -1,7 +1,9 @@
 package backend.Ajimi.manufacturer.services;
 
 import backend.Ajimi.manufacturer.entities.Manufacturer;
+import backend.Ajimi.manufacturer.entities.ManufacturerDTO;
 import backend.Ajimi.manufacturer.repositories.ManufacturerRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +14,7 @@ import java.util.UUID;
 @Service
 public class ManufacturerService {
 
+  private final ModelMapper modelMapper = new ModelMapper();
   private final ManufacturerRepository manufacturerRepository;
 
   @Autowired
@@ -23,8 +26,11 @@ public class ManufacturerService {
     return manufacturerRepository.save(manufacturer);
   }
 
-  public List<Manufacturer> findAllManufacturers() {
-    return manufacturerRepository.findAll();
+  public List<ManufacturerDTO> findAllManufacturers() {
+    List<ManufacturerDTO> manufacturers = manufacturerRepository.findAll().stream()
+            .map(manufacturer -> modelMapper.map(manufacturer, ManufacturerDTO.class))
+            .toList();
+    return manufacturers;
   }
 
   public Optional<Manufacturer> findManufacturerById(UUID id) {

@@ -2,7 +2,9 @@ package backend.Ajimi.storage.services;
 
 import backend.Ajimi.enums.StorageType;
 import backend.Ajimi.storage.entities.Storage;
+import backend.Ajimi.storage.entities.StorageDTO;
 import backend.Ajimi.storage.repositories.StorageRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,7 @@ import java.util.UUID;
 @Service
 public class StorageService {
 
+  private final ModelMapper modelMapper = new ModelMapper();
   private final StorageRepository storageRepository;
 
   @Autowired
@@ -24,8 +27,10 @@ public class StorageService {
     return storageRepository.save(storage);
   }
 
-  public List<Storage> findAllStorages() {
-    return storageRepository.findAll();
+  public List<StorageDTO> findAllStorages() {
+    return storageRepository.findAll().stream()
+            .map(storage -> modelMapper.map(storage, StorageDTO.class))
+            .toList();
   }
 
   public Optional<Storage> findStorageById(UUID id) {

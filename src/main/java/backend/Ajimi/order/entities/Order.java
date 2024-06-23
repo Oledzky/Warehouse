@@ -7,12 +7,15 @@ import backend.Ajimi.product.entities.Product;
 import jakarta.persistence.*;
 import java.util.List;
 import java.util.UUID;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+
+import lombok.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Entity
+@Getter
+@Setter
 @Table(name = "app_order")
 public class Order {
 
@@ -38,9 +41,6 @@ public class Order {
 
   @Column(name = "updated_at")
   private String updatedAt;
-
-  @Column(name = "deleted_at")
-  private String deletedAt;
 
   @OneToMany(mappedBy = "order")
   private List<OrderEntry> orderEntries;

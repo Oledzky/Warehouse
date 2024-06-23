@@ -1,7 +1,9 @@
 package backend.Ajimi.order_entry.services;
 
 import backend.Ajimi.order_entry.entity.OrderEntry;
+import backend.Ajimi.order_entry.entity.OrderEntryDTO;
 import backend.Ajimi.order_entry.repositories.OrderEntryRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +13,7 @@ import java.util.UUID;
 @Service
 public class OrderEntryService {
 
+  private final ModelMapper modelMapper = new ModelMapper();
   private final OrderEntryRepository orderEntryRepository;
 
   @Autowired
@@ -22,8 +25,11 @@ public class OrderEntryService {
     return orderEntryRepository.save(orderEntry);
   }
 
-  public List<OrderEntry> findAllOrderEntries() {
-    return orderEntryRepository.findAll();
+  public List<OrderEntryDTO> findAllOrderEntries() {
+    List<OrderEntryDTO> orderEntries = orderEntryRepository.findAll().stream()
+            .map(orderEntry -> modelMapper.map(orderEntry, OrderEntryDTO.class))
+            .toList();
+    return orderEntries;
   }
 
   public OrderEntry findOrderEntryById(UUID id) {

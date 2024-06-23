@@ -5,12 +5,15 @@ import backend.Ajimi.product.entities.Product;
 import backend.Ajimi.transaction.entities.Transaction;
 import jakarta.persistence.*;
 import java.util.UUID;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+
+import lombok.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Entity
+@Getter
+@Setter
 @Table(name = "app_transaction_entry")
 public class TransactionEntry {
 

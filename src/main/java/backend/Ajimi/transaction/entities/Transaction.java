@@ -8,12 +8,15 @@ import backend.Ajimi.user.entities.User;
 import jakarta.persistence.*;
 import java.util.List;
 import java.util.UUID;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+
+import lombok.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Entity
+@Getter
+@Setter
 @Table(name = "app_transaction")
 public class Transaction {
   @Column(unique = true, name = "id")
