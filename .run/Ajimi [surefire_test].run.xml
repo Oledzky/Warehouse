@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Ajimi [surefire:test]" type="MavenRunConfiguration" factoryName="Maven" nameIsGenerated="true">
+  <configuration default="false" name="Magazyn [surefire:test]" type="MavenRunConfiguration" factoryName="Maven" nameIsGenerated="true">
     <MavenSettings>
       <option name="myGeneralSettings" />
       <option name="myRunnerSettings">

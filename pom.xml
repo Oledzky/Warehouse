@@ -11,10 +11,10 @@
     </parent>
 
     <groupId>backend</groupId>
-    <artifactId>Ajimi</artifactId>
+    <artifactId>Magazyn</artifactId>
     <version>1.0.0-base</version>
-    <name>Ajimi</name>
-    <description>Ajimi</description>
+    <name>Magazyn</name>
+    <description>Magazyn</description>
 
     <properties>
         <java.version>17</java.version>
@@ -115,7 +115,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>backend.Ajimi.Ajimi</mainClass>
+                    <mainClass>backend.Magazyn.Magazyn</mainClass>
                 </configuration>
             </plugin>
             <!-- Maven Compiler Plugin -->

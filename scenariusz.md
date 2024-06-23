@@ -3,7 +3,6 @@
 ### Co widzimy:
 
 - Menu opcji z przyciskiem **"Stwórz zamówienie"**
-- Podsumowanie ostatnich działalności lub zamówień
 
 # Ekran wyboru lokalizacji dostawy
 

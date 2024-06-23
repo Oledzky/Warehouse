@@ -2,7 +2,7 @@
   <configuration default="false" name="Dockerfile" type="docker-deploy" factoryName="dockerfile" server-name="Docker">
     <deployment type="dockerfile">
       <settings>
-        <option name="containerName" value="ajimi-backend" />
+        <option name="containerName" value="magazyn-backend" />
         <option name="sourceFilePath" value="Dockerfile" />
       </settings>
     </deployment>
